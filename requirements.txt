@@ -3,3 +3,4 @@ matplotlib
 textblob
 joblib
 sckit-learn
+pynance

@@ -21,9 +21,46 @@ def read_csv_file(file_path):
 
 
 def extract_domain(email):
+    '''
+    Extracts the domain from an email address.
+
+    Parameters:
+    email (str): Email address
+
+    Returns:
+    str: Domain name    
+    '''
     domain = re.search("@[\w.]+", email)
+
     return domain.group() if domain else None
 
 def get_sentiment(text):
+    '''
+    Get sentiment polarity of the text.
+
+    Parameters:
+    text (str): Text for sentiment analysis
+
+    Returns:
+    float: Sentiment polarity
+    '''
+
     analysis = TextBlob(text)
+
     return analysis.sentiment.polarity
+
+def calculate_moving_averages(data, window=50):
+    '''
+    Calculate simple and exponential moving averages for the given stock data.
+
+    Parameters:
+    data (DataFrame): Stock data
+    window (int): Window size for moving averages
+
+    Returns:
+    DataFrame: Stock data with moving averages 
+    '''
+    data['SMA'] = data['Close'].rolling(window=window).mean()
+    data['EMA'] = data['Close'].ewm(span=window, adjust=False).mean()
+    
+    return data
