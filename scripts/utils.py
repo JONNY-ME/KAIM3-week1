@@ -1,4 +1,6 @@
 import pandas as pd
+import re
+from textblob import TextBlob
 
 def read_csv_file(file_path):
     # Read the CSV file
@@ -16,3 +18,12 @@ def read_csv_file(file_path):
         'column_names': column_names,
         'row_count': row_count
     }
+
+
+def extract_domain(email):
+    domain = re.search("@[\w.]+", email)
+    return domain.group() if domain else None
+
+def get_sentiment(text):
+    analysis = TextBlob(text)
+    return analysis.sentiment.polarity
