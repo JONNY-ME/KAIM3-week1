@@ -74,3 +74,28 @@ def plot_time_series(data, time_unit, title, xlabel):
     plt.grid(True)
     plt.tight_layout()
     plt.show()
+
+
+def plot_moving_averages(data, date_column, stock_value_column, window, title):
+    '''
+    Plot the moving averages for a given stock.
+
+    Parameters:
+    - data: DataFrame containing historical stock data
+    - date_column: Name of the column containing date information
+    - stock_value_column: Name of the column containing stock values
+    - window: Window size for moving averages
+    - title: Title of the plot
+
+    Returns:
+    - None (displays the plot)    
+    '''
+    plt.figure(figsize=(12, 6))
+    plt.plot(data[date_column], data[stock_value_column], label='Close Price')
+    plt.plot(data[date_column], data['SMA'], label=f'SMA ({window})')
+    plt.plot(data[date_column], data['EMA'], label=f'EMA ({window})')
+    plt.title(title)
+    plt.xlabel('Date')
+    plt.ylabel('Price')
+    plt.legend()
+    plt.show()
