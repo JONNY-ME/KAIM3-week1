@@ -99,3 +99,22 @@ def plot_moving_averages(data, date_column, stock_value_column, window, title):
     plt.ylabel('Price')
     plt.legend()
     plt.show()
+
+def plot_correlation(data, x_col, y_col, title):
+    '''
+    Plot the correlation between two columns in the data
+
+    :param data: The DataFrame containing the data
+    :param x_col: The column name for the x-axis
+    :param y_col: The column name for the y-axis
+    :param title: The title of the plot
+
+    :return: None
+    '''
+    plt.figure(figsize=(10, 6))
+    plt.scatter(data[x_col], data[y_col], color='blue')
+    plt.title(title)
+    plt.xlabel(x_col)
+    plt.ylabel(y_col)
+    plt.grid(True)
+    plt.show()

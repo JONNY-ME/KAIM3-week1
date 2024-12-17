@@ -64,3 +64,20 @@ def calculate_moving_averages(data, window=50):
     data['EMA'] = data['Close'].ewm(span=window, adjust=False).mean()
     
     return data
+
+def merge_data(news_data, stock_data, date_column, stock_date_column):
+    '''
+    Merge news and stock data on the specified date column.
+
+    Parameters:
+    news_data (DataFrame): News data
+    stock_data (DataFrame): Stock data
+    date_column (str): Date column in the news data
+
+    Returns:
+    DataFrame: Merged data
+
+    '''
+    merged_data = stock_data.merge(news_data, how='inner', left_on=date_column, right_on=stock_date_column)
+    
+    return merged_data
